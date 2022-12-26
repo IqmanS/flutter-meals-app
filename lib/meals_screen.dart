@@ -6,6 +6,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:meals_app/models/category.dart';
 
 class MealsScreen extends StatelessWidget {
+  static const routeName = '/meals';
   const MealsScreen({super.key});
 
   // final String categoryId;
