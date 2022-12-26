@@ -14,27 +14,24 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.orange,
+        canvasColor: const Color.fromRGBO(255, 254, 229, 1),
         drawerTheme: DrawerThemeData(backgroundColor: Colors.orange.shade200),
+        fontFamily: 'Raleway',
+        textTheme: ThemeData.light().textTheme.copyWith(
+            bodyText1: const TextStyle(
+              color: Color.fromRGBO(20, 51, 51, 1),
+            ),
+            bodyText2: const TextStyle(
+              color: Color.fromRGBO(20, 51, 51, 1),
+            ),
+            headline1: const TextStyle(
+              fontSize: 20,
+              fontFamily: 'RobotoCondensed',
+              fontWeight: FontWeight.bold,
+              color: Colors.black54,
+            )),
       ),
-      home: const MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      drawer: Drawer(),
-      body: CategoriesScreen(),
+      home: const CategoriesScreen(),
     );
   }
 }
