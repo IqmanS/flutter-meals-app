@@ -13,7 +13,7 @@ class MealItem extends StatelessWidget {
   final Color catColor;
   const MealItem({super.key, required this.mealId, required this.catColor});
   void selectMeal(ctx) {
-    Navigator.of(ctx).pushNamed(MealDetailScreen.routeName,
+    Navigator.of(ctx).pushReplacementNamed(MealDetailScreen.routeName,
         arguments: {'id': mealId, 'color': catColor}).then((value) {
       if (value != null) {
         print("$value disliked");

@@ -1,7 +1,4 @@
 // ignore_for_file: avoid_print
-
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:meals_app/dummy_data.dart';
 import 'package:meals_app/models/meal.dart';
@@ -20,47 +17,6 @@ class MyApp extends StatefulWidget {
 
   @override
   State<MyApp> createState() => _MyAppState();
-}
-
-class Filter {
-  static bool glutenFree = false;
-  static bool vegan = false;
-  static bool vegetarian = false;
-  static bool lactoseFree = false;
-  static List<Meal> availableMeals = DUMMY_MEALS.where((element) {
-    if (Filter.glutenFree && !element.isGlutenFree) {
-      return false;
-    }
-    if (Filter.vegan && !element.isVegan) {
-      return false;
-    }
-    if (Filter.vegetarian && !element.isVegetarian) {
-      return false;
-    }
-    if (Filter.vegetarian && !element.isLactoseFree) {
-      return false;
-    } else {
-      return true;
-    }
-  }).toList();
-  static void setFilter() {
-    availableMeals = DUMMY_MEALS.where((element) {
-      if (Filter.glutenFree && !element.isGlutenFree) {
-        return false;
-      }
-      if (Filter.vegan && !element.isVegan) {
-        return false;
-      }
-      if (Filter.vegetarian && !element.isVegetarian) {
-        return false;
-      }
-      if (Filter.vegetarian && !element.isLactoseFree) {
-        return false;
-      } else {
-        return true;
-      }
-    }).toList();
-  }
 }
 
 class _MyAppState extends State<MyApp> {

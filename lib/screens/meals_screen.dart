@@ -8,6 +8,7 @@ import 'package:meals_app/models/category.dart';
 import 'package:meals_app/widgets/meal_item.dart';
 
 import '../main.dart';
+import '../models/filter.dart';
 
 class MealsScreen extends StatelessWidget {
   static const routeName = '/meals';

@@ -7,6 +7,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:meals_app/main.dart';
 import 'package:meals_app/widgets/main_drawer.dart';
 
+import '../models/filter.dart';
+
 class FilterScreen extends StatefulWidget {
   static const routeName = "/filter";
 

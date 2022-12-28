@@ -1,10 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/dummy_data.dart';
+import 'package:meals_app/models/favourite.dart';
 import 'package:meals_app/models/meal.dart';
+import 'package:meals_app/screens/tabs_bottom_screen.dart';
 
-class MealDetailScreen extends StatelessWidget {
+import 'meals_screen.dart';
+
+class MealDetailScreen extends StatefulWidget {
   static const String routeName = "/meal_details";
 
+  const MealDetailScreen({super.key});
+
+  @override
+  State<MealDetailScreen> createState() => _MealDetailScreenState();
+}
+
+class _MealDetailScreenState extends State<MealDetailScreen> {
   Widget buildSectionTitle(BuildContext context, String text) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 4),
@@ -24,8 +35,6 @@ class MealDetailScreen extends StatelessWidget {
       child: child,
     );
   }
-
-  const MealDetailScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -89,6 +98,12 @@ class MealDetailScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: catColor,
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pushReplacementNamed(TabsScreen.routeName);
+          },
+          icon: Icon(Icons.keyboard_arrow_left_outlined),
+        ),
         backgroundColor: catColor,
         title: Text(selectedMeal.title),
       ),
@@ -109,12 +124,24 @@ class MealDetailScreen extends StatelessWidget {
           ],
         ),
       ),
+      // floatingActionButton: FloatingActionButton(
+      //   backgroundColor: catColor.withOpacity(0.8),
+      //   onPressed: () {
+      //     Navigator.of(context).pop(mealId);
+      //   },
+      //   child: const Icon(Icons.thumb_down),
+      // ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: catColor.withOpacity(0.8),
         onPressed: () {
-          Navigator.of(context).pop(mealId);
+          setState(() {
+            Favourite.toggleFavourite(selectedMeal);
+            print(Favourite.favouritedMeals);
+          });
         },
-        child: const Icon(Icons.thumb_down),
+        child: Favourite.favouritedMeals.contains(selectedMeal)
+            ? const Icon(Icons.heart_broken)
+            : const Icon(Icons.thumb_up),
       ),
     );
   }
