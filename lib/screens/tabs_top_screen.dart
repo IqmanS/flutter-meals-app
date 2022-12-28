@@ -4,15 +4,15 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:meals_app/screens/categories_screen.dart';
 import 'package:meals_app/screens/favourites_screen.dart';
 
-class TabsScreen extends StatefulWidget {
+class TabsTopScreen extends StatefulWidget {
   static const String routeName = "/tabs";
-  const TabsScreen({super.key});
+  const TabsTopScreen({super.key});
 
   @override
-  State<TabsScreen> createState() => _TabsScreenState();
+  State<TabsTopScreen> createState() => _TabsScreenState();
 }
 
-class _TabsScreenState extends State<TabsScreen> {
+class _TabsScreenState extends State<TabsTopScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
