@@ -7,6 +7,8 @@ import 'package:meals_app/screens/categories_screen.dart';
 import 'package:meals_app/screens/favourites_screen.dart';
 import 'package:meals_app/widgets/main_drawer.dart';
 
+import '../main.dart';
+
 class TabsScreen extends StatefulWidget {
   static const String routeName = "/tabs";
   const TabsScreen({super.key});

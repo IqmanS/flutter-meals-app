@@ -30,9 +30,9 @@ class MealDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final routeArgument =
-        ModalRoute.of(context)?.settings.arguments as Map<String, String>;
-
+        ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
     final mealId = routeArgument['id'];
+    final Color catColor = routeArgument['color'];
     final Meal selectedMeal = DUMMY_MEALS.firstWhere(
       (element) {
         return element.id == mealId;
@@ -87,7 +87,9 @@ class MealDetailScreen extends StatelessWidget {
     );
 
     return Scaffold(
+      backgroundColor: catColor,
       appBar: AppBar(
+        backgroundColor: catColor,
         title: Text(selectedMeal.title),
       ),
       body: SingleChildScrollView(
@@ -106,6 +108,13 @@ class MealDetailScreen extends StatelessWidget {
             buildContainer(context, steps)
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: catColor.withOpacity(0.8),
+        onPressed: () {
+          Navigator.of(context).pop(mealId);
+        },
+        child: const Icon(Icons.thumb_down),
       ),
     );
   }

@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -8,11 +10,15 @@ import '../models/meal.dart';
 
 class MealItem extends StatelessWidget {
   final String mealId;
-
-  const MealItem({super.key, required this.mealId});
+  final Color catColor;
+  const MealItem({super.key, required this.mealId, required this.catColor});
   void selectMeal(ctx) {
-    Navigator.of(ctx)
-        .pushNamed(MealDetailScreen.routeName, arguments: {'id': mealId});
+    Navigator.of(ctx).pushNamed(MealDetailScreen.routeName,
+        arguments: {'id': mealId, 'color': catColor}).then((value) {
+      if (value != null) {
+        print("$value disliked");
+      }
+    });
   }
 
   @override

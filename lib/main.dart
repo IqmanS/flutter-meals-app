@@ -1,6 +1,10 @@
 // ignore_for_file: avoid_print
 
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:meals_app/dummy_data.dart';
+import 'package:meals_app/models/meal.dart';
 import 'package:meals_app/screens/categories_screen.dart';
 import 'package:meals_app/screens/filter_screen.dart';
 import 'package:meals_app/screens/meal_detail_screen.dart';
@@ -11,8 +15,55 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class Filter {
+  static bool glutenFree = false;
+  static bool vegan = false;
+  static bool vegetarian = false;
+  static bool lactoseFree = false;
+  static List<Meal> availableMeals = DUMMY_MEALS.where((element) {
+    if (Filter.glutenFree && !element.isGlutenFree) {
+      return false;
+    }
+    if (Filter.vegan && !element.isVegan) {
+      return false;
+    }
+    if (Filter.vegetarian && !element.isVegetarian) {
+      return false;
+    }
+    if (Filter.vegetarian && !element.isLactoseFree) {
+      return false;
+    } else {
+      return true;
+    }
+  }).toList();
+  static void setFilter() {
+    availableMeals = DUMMY_MEALS.where((element) {
+      if (Filter.glutenFree && !element.isGlutenFree) {
+        return false;
+      }
+      if (Filter.vegan && !element.isVegan) {
+        return false;
+      }
+      if (Filter.vegetarian && !element.isVegetarian) {
+        return false;
+      }
+      if (Filter.vegetarian && !element.isLactoseFree) {
+        return false;
+      } else {
+        return true;
+      }
+    }).toList();
+  }
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -41,7 +92,7 @@ class MyApp extends StatelessWidget {
       home: const TabsScreen(),
       routes: {
         '/categories': (context) => const CategoriesScreen(),
-        MealsScreen.routeName: (context) => const MealsScreen(),
+        MealsScreen.routeName: (context) => MealsScreen(),
         MealDetailScreen.routeName: (context) => const MealDetailScreen(),
         TabsScreen.routeName: (context) => const TabsScreen(),
         FilterScreen.routeName: (context) => const FilterScreen(),

@@ -7,6 +7,8 @@ import 'package:meals_app/dummy_data.dart';
 import 'package:meals_app/models/category.dart';
 import 'package:meals_app/widgets/meal_item.dart';
 
+import '../main.dart';
+
 class MealsScreen extends StatelessWidget {
   static const routeName = '/meals';
   const MealsScreen({super.key});
@@ -18,7 +20,7 @@ class MealsScreen extends StatelessWidget {
     final categoryId = routeArguments['id'];
     final categoryTitle = routeArguments['title'];
 
-    final categoryMeals = DUMMY_MEALS.where((element) {
+    final categoryMeals = Filter.availableMeals.where((element) {
       return element.categories.contains(categoryId);
     }).toList();
     final cat = DUMMY_CATEGORIES.firstWhere((element) {
@@ -26,16 +28,20 @@ class MealsScreen extends StatelessWidget {
     });
 
     return Scaffold(
+      backgroundColor: cat.color.withAlpha(250),
+      appBar: AppBar(
+        title: Text("${cat.title} Recipe"),
         backgroundColor: cat.color.withAlpha(250),
-        appBar: AppBar(
-          title: Text("${cat.title} Recipe"),
-          backgroundColor: cat.color.withAlpha(250),
-        ),
-        body: ListView.builder(
-          itemCount: categoryMeals.length,
-          itemBuilder: (context, index) {
-            return MealItem(mealId: categoryMeals[index].id);
-          },
-        ));
+      ),
+      body: ListView.builder(
+        itemCount: categoryMeals.length,
+        itemBuilder: (context, index) {
+          return MealItem(
+            mealId: categoryMeals[index].id,
+            catColor: cat.color,
+          );
+        },
+      ),
+    );
   }
 }

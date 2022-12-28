@@ -8,9 +8,9 @@ class MainDrawer extends StatelessWidget {
   const MainDrawer({super.key});
 
   Widget buildListTile(BuildContext context, String title, IconData icon,
-      Function onTapHandler) {
+      Function() onTapHandler) {
     return ListTile(
-      onTap: () {},
+      onTap: onTapHandler,
       leading: Icon(
         icon,
         size: 26,
@@ -51,11 +51,11 @@ class MainDrawer extends StatelessWidget {
             height: 8,
           ),
           buildListTile(context, "Meals", Icons.restaurant, () {
-            Navigator.of(context).pushNamed(TabsScreen.routeName);
+            Navigator.of(context).pushReplacementNamed(TabsScreen.routeName);
           }),
           buildListTile(context, "Filters", Icons.settings, () {
-            Navigator.of(context).pushNamed(FilterScreen.routeName);
-          })
+            Navigator.of(context).pushReplacementNamed(FilterScreen.routeName);
+          }),
         ],
       ),
     );
