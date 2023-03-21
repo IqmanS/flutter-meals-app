@@ -1,5 +1,10 @@
 // ignore_for_file: constant_identifier_names
 
+import 'package:provider/provider.dart';
+
+import 'favourite.dart';
+import 'package:flutter/material.dart';
+
 enum Complexity {
   Simple,
   Challenging,
@@ -12,7 +17,7 @@ enum Affordability {
   Luxurious,
 }
 
-class Meal {
+class Meal extends Favourite {
   final String id;
   final List<String> categories;
   final String title;
@@ -26,7 +31,7 @@ class Meal {
   final bool isLactoseFree;
   final bool isVegan;
   final bool isVegetarian;
-  const Meal({
+  Meal({
     required this.id,
     required this.categories,
     required this.title,
@@ -41,6 +46,16 @@ class Meal {
     required this.isVegan,
     required this.isVegetarian,
   });
+
+  void toggleFavourite() {
+    if (Favourite.favouritedMeals.contains(this)) {
+      Favourite.favouritedMeals.remove(this);
+    } else {
+      Favourite.favouritedMeals.add(this);
+    }
+    isFavourite = !isFavourite;
+    notifyListeners();
+  }
 }
 
 String getComplexityText(Complexity com) {

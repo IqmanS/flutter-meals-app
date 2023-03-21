@@ -1,8 +1,6 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:meals_app/dummy_data.dart';
 import 'package:meals_app/screens/meal_detail_screen.dart';
 
@@ -13,7 +11,7 @@ class MealItem extends StatelessWidget {
   final Color catColor;
   const MealItem({super.key, required this.mealId, required this.catColor});
   void selectMeal(ctx) {
-    Navigator.of(ctx).pushReplacementNamed(MealDetailScreen.routeName,
+    Navigator.of(ctx).pushNamed(MealDetailScreen.routeName,
         arguments: {'id': mealId, 'color': catColor}).then((value) {
       if (value != null) {
         print("$value disliked");

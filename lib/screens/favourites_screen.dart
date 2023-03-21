@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../models/favourite.dart';
 import '../widgets/meal_item.dart';
@@ -14,18 +15,35 @@ class FavouritesScreen extends StatefulWidget {
 class _FavouritesScreenState extends State<FavouritesScreen> {
   @override
   Widget build(BuildContext context) {
-    return Favourite.favouritedMeals.isEmpty
+    final fav = Provider.of<Favourite>(context).getFavouritedMealsList();
+    print("isfav");
+    print(fav);
+    return fav.isEmpty
         ? const Center(
             child: Text("No Favourites added!", style: TextStyle(fontSize: 30)),
           )
         : ListView.builder(
-            itemCount: Favourite.favouritedMeals.length,
+            itemCount: fav.length,
             itemBuilder: (context, index) {
               return MealItem(
-                mealId: Favourite.favouritedMeals[index].id,
+                mealId: fav[index].id,
                 catColor: Theme.of(context).primaryColor,
               );
             },
           );
+
+    // return Favourite.favouritedMeals.isEmpty
+    //     ? const Center(
+    //         child: Text("No Favourites added!", style: TextStyle(fontSize: 30)),
+    //       )
+    //     : ListView.builder(
+    //         itemCount: Favourite.favouritedMeals.length,
+    //         itemBuilder: (context, index) {
+    //           return MealItem(
+    //             mealId: Favourite.favouritedMeals[index].id,
+    //             catColor: Theme.of(context).primaryColor,
+    //           );
+    //         },
+    //       );
   }
 }

@@ -98,12 +98,12 @@ class _MealDetailScreenState extends State<MealDetailScreen> {
     return Scaffold(
       backgroundColor: catColor,
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pushReplacementNamed(TabsScreen.routeName);
-          },
-          icon: Icon(Icons.keyboard_arrow_left_outlined),
-        ),
+        // leading: IconButton(
+        //   onPressed: () {
+        //     Navigator.of(context).pushReplacementNamed(TabsScreen.routeName);
+        //   },
+        //   icon: Icon(Icons.keyboard_arrow_left_outlined),
+        // ),
         backgroundColor: catColor,
         title: Text(selectedMeal.title),
       ),
@@ -135,7 +135,7 @@ class _MealDetailScreenState extends State<MealDetailScreen> {
         backgroundColor: catColor.withOpacity(0.8),
         onPressed: () {
           setState(() {
-            Favourite.toggleFavourite(selectedMeal);
+            selectedMeal.toggleFavourite();
             print(Favourite.favouritedMeals);
           });
         },

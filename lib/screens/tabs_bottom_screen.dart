@@ -3,9 +3,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:meals_app/models/favourite.dart';
 import 'package:meals_app/screens/categories_screen.dart';
 import 'package:meals_app/screens/favourites_screen.dart';
 import 'package:meals_app/widgets/main_drawer.dart';
+import 'package:provider/provider.dart';
 
 import '../main.dart';
 
@@ -27,31 +29,34 @@ class _TabsScreenState extends State<TabsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: const MainDrawer(),
-      appBar: AppBar(
-        title: Text(_selectedPageIndex == 0 ? "Categories " : "Favourites"),
-      ),
-      body: _selectedPageIndex == 0
-          ? const CategoriesScreen()
-          : const FavouritesScreen(),
-      bottomNavigationBar: BottomNavigationBar(
-        selectedLabelStyle:
-            const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-        selectedItemColor: Colors.white,
-        backgroundColor: Theme.of(context).primaryColor,
-        currentIndex: _selectedPageIndex,
-        onTap: _selectPage,
-        items: [
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.category),
-            label: "Categories",
-          ),
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.star),
-            label: "Favourites",
-          )
-        ],
+    return ChangeNotifierProvider(
+      create: (context) => Favourite(),
+      child: Scaffold(
+        drawer: const MainDrawer(),
+        appBar: AppBar(
+          title: Text(_selectedPageIndex == 0 ? "Categories " : "Favourites"),
+        ),
+        body: _selectedPageIndex == 0
+            ? const CategoriesScreen()
+            : const FavouritesScreen(),
+        bottomNavigationBar: BottomNavigationBar(
+          selectedLabelStyle:
+              const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          selectedItemColor: Colors.white,
+          backgroundColor: Theme.of(context).primaryColor,
+          currentIndex: _selectedPageIndex,
+          onTap: _selectPage,
+          items: [
+            const BottomNavigationBarItem(
+              icon: Icon(Icons.category),
+              label: "Categories",
+            ),
+            const BottomNavigationBarItem(
+              icon: Icon(Icons.star),
+              label: "Favourites",
+            )
+          ],
+        ),
       ),
     );
   }
