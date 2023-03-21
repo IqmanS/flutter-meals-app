@@ -1,16 +1,12 @@
-# meals_app
+# Meali - Meal App
 
-A new Flutter project.
+Meali is a mobile application that allows users to browse through a wide
+variety of dishes and recipes, organized into categories for easy navigation.
 
-## Getting Started
+## Features
+<p>Easily customize meal plans to fit individual preferences and dietary needs</p>
+<p>Save favorite recipes for future reference</p>
+<p>Filter and browse  collections of recipes</p>
+<p>Get Step-by-Step Cooking Guide and Detailed Ingredients list</p>
+<p>Search for recipes based on keywords</p>
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
